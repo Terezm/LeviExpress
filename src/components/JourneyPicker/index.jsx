@@ -35,16 +35,11 @@ export const JourneyPicker = ({ onJourneyChange }) => {
 
   const [cities, setCities] = useState([])
   const [dates, setDates] = useState([
-    {
-      "dateBasic": "28.05.2021",
-      "dateCs": "pá 28. květen 2021"
-    },
-    {
-      "dateBasic": "29.05.2021",
-      "dateCs": "so 29. květen 2021"
-    }
+   
   ])
 
+
+  
  useEffect(() => {
    
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
@@ -63,7 +58,22 @@ useEffect(() => {
 
  const handleSubmit = (event) => {
     event.preventDefault() 
-  console.log(date,fromCity,toCity)}
+    fetch(
+      `https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`
+    )
+      .then((response) => response.json())
+      .then((data) => onJourneyChange(data.results));
+  }
+
+
+  let submitDisabled = false; 
+  if (fromCity === '' || toCity === '' || date === '') {
+    submitDisabled = true;
+  }
+
+  if (fromCity === toCity) {
+    submitDisabled = true;
+  }
 
   return (
 
@@ -99,6 +109,7 @@ useEffect(() => {
           <button 
             className="btn" 
             type="submit"
+            disabled={submitDisabled}
             
           > 
             Vyhledat spoj
