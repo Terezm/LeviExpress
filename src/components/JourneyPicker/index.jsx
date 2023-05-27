@@ -1,11 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 
+const CityOptions = ({cities}) => {
+
+
+  return (
+ <>
+  <option value="">Vyberte </option>
+ {cities.map((city) => (
+  <option key={city.code} value={city.code}>{city.name}</option> ))}
+ </> )}
+
+
+
 export const JourneyPicker = ({ onJourneyChange }) => {
+// console.log("jsem tady")
+ 
+
+ 
 
   const [fromCity, setFromCity ] = useState("")
   const [toCity, setToCity ] = useState('')
   const [date, setDate ] = useState('')
+
+  const [cities, setCities] = useState([])
+
+ useEffect(() => {
+    // console.log("nejsem")
+   
+    fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
+    .then((response) => response.json())
+    .then((data) => setCities(data.results))
+}, [])
 
  const handleSubmit = (event) => {
     event.preventDefault() 
@@ -21,22 +47,17 @@ export const JourneyPicker = ({ onJourneyChange }) => {
         <label>
           <div className="journey-picker__label">Odkud:</div>
           <select onChange={(event) => setFromCity(event.target.value)} value={fromCity}>
-          <option value="">Vyberte</option>
-          <option value="">Vyberte</option>
-              <option value="Mesto1">Město 1</option>
-              <option value="Mesto2">Město 2</option>
-              <option value="Mesto3">Město 3</option>
-              <option value="Mesto4">Město 4</option>
+          
+          <CityOptions cities={cities}/>
+
           </select>
         </label>
         <label>
           <div className="journey-picker__label">Kam:</div>
           <select onChange={(event) => setToCity(event.target.value)} value={toCity}>
-            <option value="">Vyberte</option>
-              <option value="Mesto1">Město 1</option>
-              <option value="Mesto2">Město 2</option>
-              <option value="Mesto3">Město 3</option>
-              <option value="Mesto4">Město 4</option>
+
+          <CityOptions cities={cities}/>
+
           </select>
         </label>
         <label>
@@ -63,4 +84,5 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     </div>
   </div>
 );}
+
 
