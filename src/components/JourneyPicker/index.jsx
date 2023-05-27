@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import mapImage from './img/map.svg';
 import './style.css';
 
 export const JourneyPicker = ({ onJourneyChange }) => (
