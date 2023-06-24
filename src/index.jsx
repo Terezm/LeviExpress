@@ -8,7 +8,6 @@ import "./style.css";
 
 export const API_BASE_URL = "https://apps.kodim.cz/daweb/leviexpress/api";
 
-c;
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,4 +25,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.querySelector('#app')).render(<RouterProvider router={router} />);
+createRoot(document.querySelector("#app")).render(
+  <RouterProvider router={router} />
+);
