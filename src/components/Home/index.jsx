@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { JourneyPicker } from "../JourneyPicker";
-import { JourneyDetail } from "../JourneyDetail"
+import { JourneyPicker } from "../JourneyPicker/index.jsx";
+import { JourneyDetail } from "../JourneyDetail/index.jsx"
 
 import { useNavigate } from 'react-router-dom';
-import { SeatPicker } from '../SeatPicker/seatpicker';
+import { SeatPicker } from '../SeatPicker/index.jsx';
 
 export const Home = () => {
   const navigate = useNavigate();

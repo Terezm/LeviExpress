@@ -3,9 +3,9 @@ import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Home } from '../Home';
 import {createBrowserRouter,
-RouterProvider, 
-Outlet} from "react-router-dom";
+RouterProvider} from "react-router-dom";
 import {Reservation} from '../Reservation';
+
 
 
 export const App = () => (
